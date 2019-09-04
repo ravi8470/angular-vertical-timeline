@@ -8,7 +8,7 @@ import * as _ from 'lodash';
   templateUrl: './vertical-timeline2.component.html',
   styleUrls: ['./vertical-timeline2.component.css']
 })
-export class VerticalTimeline2Component implements OnInit, AfterViewInit {
+export class VerticalTimeline2Component implements OnInit {
 
   constructor(private dataService: DataService, private _formBuilder: FormBuilder) { }
 
@@ -23,11 +23,7 @@ export class VerticalTimeline2Component implements OnInit, AfterViewInit {
     this.secondForm = this._formBuilder.group({
       data: ['', Validators.required]
     });
-    this.dataService.getData().subscribe(x => {x = x.map(y => Object.assign({},y,{inView: true}));this.data = x;console.log(x);})
-  }
-
-  ngAfterViewInit() {
-    console.log(this.components);
+    this.dataService.getData().subscribe(x => {x = x.map(y => Object.assign({},y,{inView: true}));this.data = x;})
   }
 
   ngOnDestroy() {
@@ -50,12 +46,9 @@ export class VerticalTimeline2Component implements OnInit, AfterViewInit {
   }
 
   addData(ev) {
-    ev.preventDefault();
-    console.log(this.secondForm.value);
     const data = this.secondForm.value.data
     this.dataService.send(data).subscribe((res) => {
-      console.log(res);
-      this.data.push({ data: res.data, created_at: res.created_at });
+      this.data.push({ data: res.data, created_at: res.created_at ,inView: true});
     })
   }
 }
