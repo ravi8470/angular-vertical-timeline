@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-vertical-timeline2',
@@ -19,7 +19,7 @@ export class VerticalTimeline2Component implements OnInit, AfterViewInit {
   animate: Boolean = false;
 
   ngOnInit() {
-    window.addEventListener('scroll', this.scroll, true);
+    window.addEventListener('scroll', _.debounce(this.scroll,50), true);
     this.secondForm = this._formBuilder.group({
       data: ['', Validators.required]
     });
