@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { MatVerticalStepper, MatStep, MatStepLabel } from "@angular/material/stepper";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

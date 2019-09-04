@@ -1,0 +1,72 @@
+<form [formGroup]="secondForm" (ngSubmit)="addData($event)">
+    <input placeholder="Data" formControlName="data" required />
+    <button type="submit" [disabled] = "!secondForm.valid">submit</button>
+  </form>
+  <!--
+<div ng-app="app" >
+  <div class="sq-container">
+    <div class="sq-timeline">
+      <div
+        class="sq-timeline__item"
+        *ngFor="let item of data;let i = index"
+      >
+        <div
+          class="sq-timeline__item__date"
+          title="{{item.created_at| date:'short'}}"
+        >
+          <span>{{i+1}}</span>
+        </div>
+
+        <div
+          class="sq-timeline__item__info"
+          ng-class-even="'sq-timeline__item__info--left'"
+        >
+          <span class="sq-timeline__item__info__description">
+            <span ng-bind="item.title"></span>
+          </span>
+
+          <span
+            class="sq-timeline__item__info__amount"
+            ng-class="{'sq-timeline__item__info__amount--outgoing': item.type === 'outgoing'}"
+          >
+            <span ng-show="item.type === 'incoming'">+</span>
+            <span ng-show="item.type === 'outgoing'">-</span> £<span
+              ng-bind="item.amount"
+            ></span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div ng-app="app">
+  <div class="sq-container">
+    <div class="sq-timeline">
+      <div
+        class="sq-timeline__item"
+        *ngFor="let item of data; let i = index"
+        in-view="itemInview(index, $inview, $inviewInfo, item)"
+        in-view-options="{ offset: -100 }"
+        [class.sq-timeline__item--animate]='item.inView'
+        #comp
+      >
+        <div
+          class="sq-timeline__item__date"
+          [class.sq-timeline__item__date--outgoing]="item.type === 'outgoing'"
+        >
+          <span>{{i+1}}</span>
+        </div>
+
+        <div
+          class="sq-timeline__item__info"
+          ng-class-even="'sq-timeline__item__info--left'"
+        >
+          <span class="sq-timeline__item__info__description">
+            <span>{{item.data}}</span><br>
+            <span>Created: {{item.created_at | date: 'mediumTime'}}</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

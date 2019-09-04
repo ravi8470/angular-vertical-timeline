@@ -1,0 +1,78 @@
+<!-- <mat-vertical-stepper [linear]="isLinear" #stepper [disableRipple] = "false" >
+  <mat-step label='add data' >
+    <div>
+        <button (click)="changestepper(stepper)">Submit Data</button>
+      <button mat-button matStepperNext (click)="abc($event) ">Next</button>
+    </div>
+  </mat-step>
+  <mat-step label='abcd2' >
+    <div>
+      <button mat-button matStepperNext>Next</button>
+    </div>
+  </mat-step>
+  <mat-step label='abcd'>
+    <div>
+      <button mat-button matStepperNext>Next</button>
+    </div>
+  </mat-step>
+  <mat-step label='abcd'>
+    <div>
+      <button mat-button matStepperNext>Next</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>
+
+<mat-vertical-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Enter Data:</ng-template>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Data"
+          formControlName="firstCtrl"
+          required
+        />
+      </mat-form-field>
+      <div>
+        <button mat-button (click)="submitData(stepper)">Submit</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Fill out your address</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Address" formControlName="secondCtrl" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Data Submitted!</ng-template> -->
+    <!-- <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-vertical-stepper> -->
+<form [formGroup]="secondForm" (ngSubmit)="addData($event)">
+  <input placeholder="Data" formControlName="data" required />
+  <button type="submit" [disabled] = "!secondForm.valid">submit</button>
+</form>
+<div id="stepper">
+<mat-vertical-stepper>
+  <ng-template matStepperIcon="edit">
+    <mat-icon>bubble_chart</mat-icon>
+  </ng-template>
+  <div *ngFor="let x of data" >
+    <mat-step >
+      <!-- <ng-template matStepLabel>{{ x.data }}<br> Added : {{x.created_at | date:'mediumTime'}}</ng-template> -->
+    </mat-step>
+  </div>
+</mat-vertical-stepper>
+</div>

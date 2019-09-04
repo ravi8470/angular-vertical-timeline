@@ -1,0 +1,26 @@
+#stepper {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+mat-vertical-stepper {
+  width: auto;
+
+}
+mat-step-header{
+  padding: 0
+}
+.mat-vertical-content-container {
+  margin-left: 45px;
+}
+.mat-step-icon {
+  height: 44px !important;
+  width: 44px !important;
+}
